@@ -1,8 +1,8 @@
-package com.iesam.ryanair.features.demo.data.local;
+package com.iesam.ryanair.features.tripulante.data.local;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.iesam.ryanair.features.demo.domain.Demo;
+import com.iesam.ryanair.features.tripulante.domain.Tripulante;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,20 +20,20 @@ public class DemoFileLocalDataSource {
 
     private Gson gson = new Gson();
 
-    private final Type typeList = new TypeToken<ArrayList<Demo>>() {
+    private final Type typeList = new TypeToken<ArrayList<Tripulante>>() {
     }.getType();
 
-    public void save(Demo model) {
-        List<Demo> models = findAll();
+    public void save(Tripulante model) {
+        List<Tripulante> models = findAll();
         models.add(model);
         saveToFile(models);
     }
 
-    public void saveList(List<Demo> models) {
+    public void saveList(List<Tripulante> models) {
         saveToFile(models);
     }
 
-    private void saveToFile(List<Demo> models) {
+    private void saveToFile(List<Tripulante> models) {
         try {
             FileWriter myWriter = new FileWriter(nameFile);
             myWriter.write(gson.toJson(models));
@@ -45,9 +45,9 @@ public class DemoFileLocalDataSource {
         }
     }
 
-    public Demo findById(String id) {
-        List<Demo> models = findAll();
-        for (Demo model : models) {
+    public Tripulante findById(String id) {
+        List<Tripulante> models = findAll();
+        for (Tripulante model : models) {
             if (Objects.equals(model.getId(), id)) {
                 return model;
             }
@@ -55,7 +55,7 @@ public class DemoFileLocalDataSource {
         return null;
     }
 
-    public List<Demo> findAll() {
+    public List<Tripulante> findAll() {
         try {
             File myObj = new File(nameFile);
             if (!myObj.exists()) {
@@ -79,9 +79,9 @@ public class DemoFileLocalDataSource {
     }
 
     public void delete(String modelId) {
-        List<Demo> newList = new ArrayList<>();
-        List<Demo> models = findAll();
-        for (Demo model : models) {
+        List<Tripulante> newList = new ArrayList<>();
+        List<Tripulante> models = findAll();
+        for (Tripulante model : models) {
             if (model.getId() != modelId) {
                 newList.add(model);
             }

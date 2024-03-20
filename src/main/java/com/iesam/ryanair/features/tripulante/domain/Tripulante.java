@@ -1,6 +1,6 @@
-package com.iesam.ryanair.features.demo.domain;
+package com.iesam.ryanair.features.tripulante.domain;
 
-public class Demo {
+public class Tripulante {
     private String id;
 
     public String getId() {
