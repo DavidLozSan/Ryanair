@@ -1,8 +1,8 @@
-package com.iesam.ryanair.features.demo.data.local;
+package com.iesam.ryanair.features.pasajero.data.local;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.iesam.ryanair.features.demo.domain.Demo;
+import com.iesam.ryanair.features.pasajero.domain.Pasajero;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,26 +14,26 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class DemoFileLocalDataSource {
+public class PasajeroFileLocalDataSource {
 
-    private String nameFile = "demo.txt";
+    private String nameFile = "pasajero.txt";
 
     private Gson gson = new Gson();
 
-    private final Type typeList = new TypeToken<ArrayList<Demo>>() {
+    private final Type typeList = new TypeToken<ArrayList<Pasajero>>() {
     }.getType();
 
-    public void save(Demo model) {
-        List<Demo> models = findAll();
+    public void save(Pasajero model) {
+        List<Pasajero> models = findAll();
         models.add(model);
         saveToFile(models);
     }
 
-    public void saveList(List<Demo> models) {
+    public void saveList(List<Pasajero> models) {
         saveToFile(models);
     }
 
-    private void saveToFile(List<Demo> models) {
+    private void saveToFile(List<Pasajero> models) {
         try {
             FileWriter myWriter = new FileWriter(nameFile);
             myWriter.write(gson.toJson(models));
@@ -45,17 +45,17 @@ public class DemoFileLocalDataSource {
         }
     }
 
-    public Demo findById(String id) {
-        List<Demo> models = findAll();
-        for (Demo model : models) {
-            if (Objects.equals(model.getId(), id)) {
+    public Pasajero findByDni(String dni) {
+        List<Pasajero> models = findAll();
+        for (Pasajero model : models) {
+            if (Objects.equals(model.getDni(), dni)) {
                 return model;
             }
         }
         return null;
     }
 
-    public List<Demo> findAll() {
+    public List<Pasajero> findAll() {
         try {
             File myObj = new File(nameFile);
             if (!myObj.exists()) {
@@ -78,11 +78,11 @@ public class DemoFileLocalDataSource {
         return new ArrayList<>();
     }
 
-    public void delete(String modelId) {
-        List<Demo> newList = new ArrayList<>();
-        List<Demo> models = findAll();
-        for (Demo model : models) {
-            if (model.getId() != modelId) {
+    public void delete(String modelDni) {
+        List<Pasajero> newList = new ArrayList<>();
+        List<Pasajero> models = findAll();
+        for (Pasajero model : models) {
+            if (model.getDni() != modelDni) {
                 newList.add(model);
             }
         }
