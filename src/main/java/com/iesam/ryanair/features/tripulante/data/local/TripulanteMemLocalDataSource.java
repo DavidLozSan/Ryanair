@@ -7,7 +7,7 @@ import java.util.*;
 public class TripulanteMemLocalDataSource {
 
     private Map<String, Tripulante> dataStore = new TreeMap<>();
-    private TripulanteMemLocalDataSource instance = null;
+    private static TripulanteMemLocalDataSource instance = null;
 
     public void save(Tripulante model) {
         dataStore.put(model.getDni(), model);
@@ -31,7 +31,7 @@ public class TripulanteMemLocalDataSource {
         dataStore.remove(modelDni);
     }
 
-    public TripulanteMemLocalDataSource newInstance() {
+    public static TripulanteMemLocalDataSource newInstance() {
         if (instance == null) {
             instance = new TripulanteMemLocalDataSource();
         }

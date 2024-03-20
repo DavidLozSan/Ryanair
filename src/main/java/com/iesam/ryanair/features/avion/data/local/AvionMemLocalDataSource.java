@@ -9,7 +9,7 @@ import java.util.TreeMap;
 public class AvionMemLocalDataSource {
 
     private Map<String, Avion> dataStore = new TreeMap<>();
-    private AvionMemLocalDataSource instance = null;
+    private static AvionMemLocalDataSource instance = null;
 
     public void save(Avion model) {
         dataStore.put(model.getCodAvion(), model);
@@ -33,7 +33,7 @@ public class AvionMemLocalDataSource {
         dataStore.remove(modelCodAvion);
     }
 
-    public AvionMemLocalDataSource newInstance() {
+    public static AvionMemLocalDataSource newInstance() {
         if (instance == null) {
             instance = new AvionMemLocalDataSource();
         }

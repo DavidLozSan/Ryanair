@@ -9,7 +9,7 @@ import java.util.TreeMap;
 public class PasajeroMemLocalDataSource {
 
     private Map<String, Pasajero> dataStore = new TreeMap<>();
-    private PasajeroMemLocalDataSource instance = null;
+    private static PasajeroMemLocalDataSource instance = null;
 
     public void save(Pasajero model) {
         dataStore.put(model.getDni(), model);
@@ -33,7 +33,7 @@ public class PasajeroMemLocalDataSource {
         dataStore.remove(modelDni);
     }
 
-    public PasajeroMemLocalDataSource newInstance() {
+    public static PasajeroMemLocalDataSource newInstance() {
         if (instance == null) {
             instance = new PasajeroMemLocalDataSource();
         }

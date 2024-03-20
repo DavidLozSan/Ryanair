@@ -20,6 +20,7 @@ public class VueloPresentation {
 
     public static Boolean getAvion(String codAvion) {
         GetAvionInToVueloUseCase getAvionInToVueloUseCase = new GetAvionInToVueloUseCase(new VueloDataRepository());
-        return getAvionInToVueloUseCase.execute(codAvion);
+        Boolean disponible = getAvionInToVueloUseCase.execute(codAvion);
+        return disponible;
     }
 }

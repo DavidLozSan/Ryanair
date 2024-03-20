@@ -35,7 +35,7 @@ public class Main {
 
         VueloPresentation.save(new Vuelo("1", AvionPresentation.obtain("100001"), tripulantes, pasajeros, "10/02/2024", "10:30", "90e", "Madrid", "Barcelona"));
         VueloPresentation.obtain("1");
-        VueloPresentation.getAvion("100001");
-        VueloPresentation.getAvion("100002");
+        System.out.println(VueloPresentation.getAvion("100001"));
+        System.out.println(VueloPresentation.getAvion("100002"));
     }
 }
