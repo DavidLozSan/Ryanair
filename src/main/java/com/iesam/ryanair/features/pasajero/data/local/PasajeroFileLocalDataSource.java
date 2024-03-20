@@ -1,8 +1,8 @@
-package com.iesam.ryanair.features.tripulante.data.local;
+package com.iesam.ryanair.features.pasajero.data.local;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.iesam.ryanair.features.tripulante.domain.Tripulante;
+import com.iesam.ryanair.features.pasajero.domain.Pasajero;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,26 +14,26 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class DemoFileLocalDataSource {
+public class PasajeroFileLocalDataSource {
 
-    private String nameFile = "demo.txt";
+    private String nameFile = "pasajero.txt";
 
     private Gson gson = new Gson();
 
-    private final Type typeList = new TypeToken<ArrayList<Tripulante>>() {
+    private final Type typeList = new TypeToken<ArrayList<Pasajero>>() {
     }.getType();
 
-    public void save(Tripulante model) {
-        List<Tripulante> models = findAll();
+    public void save(Pasajero model) {
+        List<Pasajero> models = findAll();
         models.add(model);
         saveToFile(models);
     }
 
-    public void saveList(List<Tripulante> models) {
+    public void saveList(List<Pasajero> models) {
         saveToFile(models);
     }
 
-    private void saveToFile(List<Tripulante> models) {
+    private void saveToFile(List<Pasajero> models) {
         try {
             FileWriter myWriter = new FileWriter(nameFile);
             myWriter.write(gson.toJson(models));
@@ -45,17 +45,17 @@ public class DemoFileLocalDataSource {
         }
     }
 
-    public Tripulante findById(String id) {
-        List<Tripulante> models = findAll();
-        for (Tripulante model : models) {
-            if (Objects.equals(model.getId(), id)) {
+    public Pasajero findByDni(String dni) {
+        List<Pasajero> models = findAll();
+        for (Pasajero model : models) {
+            if (Objects.equals(model.getDni(), dni)) {
                 return model;
             }
         }
         return null;
     }
 
-    public List<Tripulante> findAll() {
+    public List<Pasajero> findAll() {
         try {
             File myObj = new File(nameFile);
             if (!myObj.exists()) {
@@ -78,11 +78,11 @@ public class DemoFileLocalDataSource {
         return new ArrayList<>();
     }
 
-    public void delete(String modelId) {
-        List<Tripulante> newList = new ArrayList<>();
-        List<Tripulante> models = findAll();
-        for (Tripulante model : models) {
-            if (model.getId() != modelId) {
+    public void delete(String modelDni) {
+        List<Pasajero> newList = new ArrayList<>();
+        List<Pasajero> models = findAll();
+        for (Pasajero model : models) {
+            if (model.getDni() != modelDni) {
                 newList.add(model);
             }
         }

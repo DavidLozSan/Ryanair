@@ -4,12 +4,13 @@ import com.iesam.ryanair.features.tripulante.domain.Tripulante;
 
 import java.util.*;
 
-public class DemoMemLocalDataSource {
+public class TripulanteMemLocalDataSource {
 
     private Map<String, Tripulante> dataStore = new TreeMap<>();
+    private TripulanteMemLocalDataSource instance = null;
 
     public void save(Tripulante model) {
-        dataStore.put(model.getId(), model);
+        dataStore.put(model.getDni(), model);
     }
 
     public void saveList(List<Tripulante> models) {
@@ -18,15 +19,22 @@ public class DemoMemLocalDataSource {
         }
     }
 
-    public Tripulante findById(String id) {
-        return dataStore.get(id);
+    public Tripulante findByDni(String dni) {
+        return dataStore.get(dni);
     }
 
     public List<Tripulante> findAll() {
         return dataStore.values().stream().toList();
     }
 
-    public void delete(String modelId) {
-        dataStore.remove(modelId);
+    public void delete(String modelDni) {
+        dataStore.remove(modelDni);
+    }
+
+    public TripulanteMemLocalDataSource newInstance() {
+        if (instance == null) {
+            instance = new TripulanteMemLocalDataSource();
+        }
+        return instance;
     }
 }
